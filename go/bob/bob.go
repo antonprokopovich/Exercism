@@ -38,18 +38,26 @@ func IsJustAddressing(remark string) bool {
 	return strings.TrimSpace(remark) == ""
 }
 
+const (
+	ToAddressing      string = "Fine. Be that way!"
+	ToYellingQuestion string = "Calm down, I know what I'm doing!"
+	ToYelling         string = "Whoa, chill out!"
+	ToQuestion        string = "Sure."
+	ToOther           string = "Whatever."
+)
+
 // Returns standard response string for each remark type.
 func Hey(remark string) string {
 	switch {
 	case IsJustAddressing(remark):
-		return "Fine. Be that way!"
+		return ToAddressing
 	case IsYelling(remark) && IsQuestion(remark):
-		return "Calm down, I know what I'm doing!"
+		return ToYellingQuestion
 	case IsYelling(remark):
-		return "Whoa, chill out!"
+		return ToYelling
 	case IsQuestion(remark):
-		return "Sure."
+		return ToQuestion
 	default:
-		return "Whatever."
+		return ToOther
 	}
 }
