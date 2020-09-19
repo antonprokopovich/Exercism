@@ -40,15 +40,16 @@ func IsJustAddressing(remark string) bool {
 
 // Returns standard response string for each remark type.
 func Hey(remark string) string {
-	if IsJustAddressing(remark) {
+	switch {
+	case IsJustAddressing(remark):
 		return "Fine. Be that way!"
-	} else if IsYelling(remark) && IsQuestion(remark) {
+	case IsYelling(remark) && IsQuestion(remark):
 		return "Calm down, I know what I'm doing!"
-	} else if IsYelling(remark) {
+	case IsYelling(remark):
 		return "Whoa, chill out!"
-	} else if IsQuestion(remark) {
+	case IsQuestion(remark):
 		return "Sure."
-	} else {
+	default:
 		return "Whatever."
 	}
 }
