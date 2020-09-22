@@ -1,15 +1,15 @@
 package twofer
 
-import "fmt"
+import "strings"
 
-// ShareWith returns string "One for {name}, one for me" if name is present.
-// Otherwise it returns "One for you, one for me".
+const pattern = "One for you, one for me."
+
+// ShareWith returns string "One for {name}, one for me." if name is present.
+// Otherwise returns "One for you, one for me."
 func ShareWith(name string) string {
-	var who string
-	if name == "" {
-		who = "you"
-	} else {
-		who = name
+	result := pattern
+	if name != "" {
+		result = strings.Replace(result, "you", name, -1)
 	}
-	return fmt.Sprintf("One for %s, one for me.", who)
+	return result
 }
